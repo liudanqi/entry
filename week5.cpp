@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-enum Error_code { underflow, overflow, range_error_new, success, fail};
+enum Error_code { underflow, overflow, range_error_new, success, fail, not_present };
 const int max_list = 30;
 template < class List_entry>
 class List {
@@ -96,7 +96,6 @@ Error_code List<List_entry>::insert(int position, const List_entry &x) {
 	count++;
 	return success;
 }
-typedef int Key;
 class Key {
 	int key;
 public:
@@ -130,6 +129,7 @@ bool operator!=(const Key&x, const Key&y) {
 }
 ostream&operator<<(ostream&output, Key&x) {
 	output << x.the_key() << endl;
+	return output;
 }
 class Ordered_list : public List<Key> {
 public:
@@ -143,7 +143,7 @@ Error_code Ordered_list::insert(const Key &data) {
 	for (position = 0;position < s;position++) {
 		Key list_data;
 		retrieve(position, list_data);
-		if (data >= list_data);break;
+		if (data >= list_data)break;
 	}
 	return List<Key>::insert(position, data);
 }
@@ -197,5 +197,3 @@ int main() {
 	my.insert(70);
 	my.print();
 }
-
-
