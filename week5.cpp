@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-enum Error_code { underflow, overflow, range_error_new, success, fail, not_present };
+enum Error_code { underflow, overflow, range_error_new, success, fail};
 const int max_list = 30;
 template < class List_entry>
 class List {
