@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-enum Error_code { underflow, overflow, range_error_new, success, fail};
+enum Error_code { underflow, overflow, range_error, success, fail};
 const int max_list = 30;
 template < class List_entry>
 class List {
@@ -63,7 +63,7 @@ Error_code List<List_entry>::retrieve(int position, List_entry &x) const {
 	return success;
 }
 template < class List_entry>
-Error_code replace(int position, const List_entry &x) {
+Error_code List<List_entry>::replace(int position, const List_entry &x) {
 	if (empty())
 		return underflow;
 	if (position < 0 || position >= count)
