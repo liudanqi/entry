@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-enum Error_code { underflow, overflow, range_error, success, fail};
+enum Error_code { underflow, overflow, range_error_new, success, fail};
 const int max_list = 30;
 template < class List_entry>
 class List {
@@ -58,7 +58,7 @@ Error_code List<List_entry>::retrieve(int position, List_entry &x) const {
 	if (empty())
 		return underflow;
 	if (position < 0 || position >= count)
-		return range_error;
+		return range_error_new;
 	x = entry[position];
 	return success;
 }
@@ -67,16 +67,16 @@ Error_code List<List_entry>::replace(int position, const List_entry &x) {
 	if (empty())
 		return underflow;
 	if (position < 0 || position >= count)
-		return range_error;
+		return range_error_new;
 	entry[position] = x;
 	return success;
 }
 template < class List_entry>
-Error_code remove(int position, List_entry &x) {
+Error_code List<List_entry>::remove(int position, List_entry &x) {
 	if (empty())
 		return underflow;
 	if (position < 0 || position >= count)
-		return range_error;
+		return range_error_new;
 	x=entry[position];
 	for (int i = position;i < count;i++) {
 		entry[i] = entry[i + 1];
@@ -85,11 +85,11 @@ Error_code remove(int position, List_entry &x) {
 	return success;
 }
 template < class List_entry>
-Error_code insert(int position, const List_entry &x) {
+Error_code List<List_entry>::insert(int position, const List_entry &x) {
 	if (full())
 		return overflow;
 	if (position<0 || position>count)
-		return range_error;
+		return range_error_new;
 	for (int i = count - 1;i >= position;i--) 
 		entry[i + 1] = entry[i];
 	entry[position] = x;
