@@ -99,8 +99,8 @@ Error_code List<List_entry>::insert(int position, const List_entry &x) {
 class Key {
 	int key;
 public:
-	Key(int x = 0);
-	int the_key()const;
+	Key(int x=0):key(x){};
+	int the_key()const{return key;};
 };
 bool operator>(const Key&x, const Key&y);
 bool operator<(const Key&x, const Key&y);
